@@ -1,19 +1,21 @@
-import Login from './pages/login/login.jsx';
-import Register from './pages/register/register.jsx';
+import Login from './pages/login/login';
+import Register from './pages/register/register';
+
 
 import {
-    createBrowserRouter,
-    RouterProvider,
-    Route,
-    Outlet,
-    Navigate,
+  createBrowserRouter,
+  RouterProvider,
+  Route,
+  Outlet,
+  Navigate,
 } from "react-router-dom";
 
 import LeftBar from './components/leftBar/leftBar.jsx';
 import RightBar from './components/rightBar/rightBar.jsx';
 import Navbar from './components/navbar/navbar.jsx';
-import Home from './pages/home/Home.jsx';
-import Profile from './pages/profile/Profile.jsx';
+import Home from './pages/home/Home';
+import Profile from './pages/profile/Profile';
+import "./styles.scss";
 
 function App() {
 
@@ -21,7 +23,7 @@ function App() {
 
     const Layout = () => {
         return (
-            <div>
+            <div className='theme-dark'>
                 <Navbar />
 
                 <div style={{ display: "flex" }} >
@@ -47,40 +49,33 @@ function App() {
     };
 
     const router = createBrowserRouter([
-
         {
-            path: "/",
-            element: (
-                <ProtectedRoute>
-                    <Layout />
-                </ProtectedRoute>
-            ),
-
-            children: [
-                {
-                    path: "/",
-                    element: <Home />
-
-                },
-                
-                {
-                    path: "/profile/:id",
-                    element: <Profile />
-
-                },
-            ],
+          path: "/",
+          element: (
+            <ProtectedRoute>
+              <Layout />
+            </ProtectedRoute>
+          ),
+          children: [
+            {
+              path: "/",
+              element: <Home />,
+            },
+            {
+              path: "/Profile/:id",
+              element: <Profile />,
+            },
+          ],
         },
-
         {
-            path: "/login",
-            element: <Login />,
+          path: "/login",
+          element: <Login />,
         },
-
         {
-            path: "/register",
-            element: <Register />,
+          path: "/register",
+          element: <Register />,
         },
-    ]);
+      ]);
 
     return (
         <div>
