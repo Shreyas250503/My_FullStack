@@ -5,7 +5,7 @@ import Register from './pages/register/register';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
+//   Route,
   Outlet,
   Navigate,
 } from "react-router-dom";
@@ -16,14 +16,20 @@ import Navbar from './components/navbar/navbar.jsx';
 import Home from './pages/home/Home';
 import Profile from './pages/profile/Profile';
 import "./styles.scss";
+import { DarkModeContext } from './context/DarkModeContext.js';
+import { useContext } from 'react';
+import { AuthContext } from './context/AuthContext.js';
 
 function App() {
-
-    const currentUser = true;
+   
+   const {currentUser} = useContext(AuthContext);
+ //  const currentUser = true;
+    const {darkMode} = useContext(DarkModeContext);
+    console.log(darkMode)
 
     const Layout = () => {
         return (
-            <div className='theme-dark'>
+            <div className={`theme-${darkMode ? "dark" :  "light"}`}>
                 <Navbar />
 
                 <div style={{ display: "flex" }} >
